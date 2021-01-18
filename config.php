@@ -8,7 +8,7 @@ const API_VERSION = "1.0.0";
 // please fill correct credentials for accessing the database
 const DBURL = 'dburl';
 const DBUSER = 'username';
-const DBPASS = 'password;
+const DBPASS = 'password';
 const DBNAME = 'dbname';
 
 
