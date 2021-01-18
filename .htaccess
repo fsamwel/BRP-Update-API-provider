@@ -1,0 +1,12 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+RewriteRule ^wijzigingen wijzigingen.php [L,QSA]
+RewriteRule ^volgindicaties$ volgindicaties.php [L,QSA]
+RewriteRule ^volgindicaties/(.+)$ volgindicaties.php?burgerservicenummer=$1 [L,QSA]
+RewriteRule ^berichten berichten.php [L,QSA]
+
+RewriteCond %{HTTP_HOST} ^[^.]+\.[^.]+$
+RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [L,R=301]
+
+</IfModule>
