@@ -1,5 +1,11 @@
 # Haal Centraal BRP Update API - provider implementatie
-Dit is een implementatie van een provider van de Haal Centraal BRP Update API. Deze is gemaakt om de werking te demonstreren voor het uitproberen van de API.
+Dit is een implementatie van een provider van de Haal Centraal BRP Update API. Deze implementatie is gemaakt om de werking te demonstreren voor het uitproberen van de API.
+
+De implementatie doet op een aantal punten niet wat een productie-implementatie wel zou moeten doen. Bijvoorbeeld:
+- Controleren dat de gebruiker rechten heeft op de API/operatie. Voor productie is gebruik van een API key niet de meest voor de hand liggende keuze.
+- Controleren dat een persoon waarvoor een volgindicatie wordt gezet of wijziging binnenkomt werkelijk bestaat. Wanneer een persoon niet bestaat zou de API een 404 moeten geven.
+- Voor implementatie door een (leverancier van een) gemeente moet een volgindicatie worden doorgezet naar de binnengemeentelijke bron, dan wel naar GBA-V
+- Op de juiste manier ontvangen, valideren en verwerken van wijzigingen. Bijvoorbeeld StUF npsLk01 berichten of Ag31 berichten. De API biedt endpoint /berichten aan, maar deze is alleen voor testdoeleinden geschikt.
 
 ## Beschikbare functies
 De volgende endpoints zijn beschikbaar:
@@ -11,13 +17,6 @@ De volgende endpoints zijn beschikbaar:
 | PUT /volgindicaties/{burgerservicenummer} | Zet, wijzig of beëindig de volgindicatie op een persoon |
 | GET /wijzigingen?vanaf={vanaf} | Vraag alle gevolgde personen waarbij sinds de vanaf-datum iets gewijzigd is |
 | POST /berichten | Testfunctie voor het toevoegen van wijzigingen |
-
-## Installatie
-De API vereist php 7.3 of hoger, of php 7.2 met de Apache module geïnstalleerd.
-De API vereist een Mysql of MariaDb database.
-
-1. Voer de queries in create_tables.sql uit om de gewenste tabellen te maken.
-2. Wijzig de database creadentials en eventueel andere settings in config.php
 
 ## Getting started
 De API is beschikbaar via de url http://www.quality-of-service.nl/haalcentraal/api/update
@@ -31,6 +30,12 @@ Je kan wijzigingen op twee manieren sturen:
 - Als VOA bericht
 - Als json array
 
+## Installatie
+De API vereist php 7.3 of hoger, of php 7.2 met de Apache module geïnstalleerd.
+De API vereist een Mysql of MariaDb database (gebruikt mysqli).
+
+1. Voer de queries in create_tables.sql uit om de gewenste tabellen te maken.
+2. Wijzig de database creadentials en eventueel andere settings in config.php.
 
 Importeer [BRP Update API.postman_collection.json](BRP Update API.postman_collection.json) in Postman om de API te testen.
 
@@ -46,7 +51,7 @@ De resource ontvangt in de payload van een POST bericht een of meerdere berichte
 Om een VOA bericht te sturen moet als Content header "text/plain" worden meegegeven.
 
 De API zoekt in alle regels naar burgerservicenummers. Een regel bevat een burgerservicenummer, wanneer record-id = "010120".
-Bijvoorbeeld voor het toevoegen van een wijziging op burgerservicenummer 999994669: 10089321__010120__009__999994669__
+Bijvoorbeeld voor het toevoegen van een wijziging op burgerservicenummer 999994669: 10089321<b>010120</b>009<b>999994669</b>
 
 Deze API controleert niet of de berichten valide zijn. Er wordt ook geen onderscheid
 gemaakt tussen de berichttypen waarin burgerservicenummers voorkomen. Dus elk 
@@ -62,7 +67,10 @@ uit GBA-V.
 ### JSON array
 Als payload van het POST bericht wordt een json array geleverd. In de array zitten objecten met burgerservicenummer en datum. 
 Voordeel van deze vorm is dat je ook wijzigingen in het verleden kunt toevoegen en daarmee vanaf kunt testen.
+
 Bijvoorbeeld:
+
+```
 [
 	{
 		"burgerservicenummer": "001008932",
@@ -77,3 +85,10 @@ Bijvoorbeeld:
 		"datum": "2021-01-16"
 	}
 ]
+```
+
+# Contact
+Frank Samwel [frank@quality-of-service.nl](mailto:frank@quality-of-service.nl)
+
+# Licentie
+Copyright © Quality of Service Licensed under the [EUPL](https://eupl.eu)
