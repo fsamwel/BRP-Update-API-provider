@@ -2,7 +2,6 @@
 Dit is een implementatie van een provider van de Haal Centraal BRP Update API. Deze is gemaakt om de werking te demonstreren voor het uitproberen van de API.
 
 ## Beschikbare functies
-De API is beschikbaar via de url http://www.quality-of-service.nl/haalcentraal/api/update
 De volgende endpoints zijn beschikbaar:
 
 | Endpoint            | Functionaliteit                       |
@@ -14,14 +13,17 @@ De volgende endpoints zijn beschikbaar:
 | POST /berichten | Testfunctie voor het toevoegen van wijzigingen |
 
 ## Installatie
-De API vereist php 7.3 of hoger, of ph 7.2 met de Apache module geïnstalleerd.
+De API vereist php 7.3 of hoger, of php 7.2 met de Apache module geïnstalleerd.
 De API vereist een Mysql of MariaDb database.
 
 1. Voer de queries in create_tables.sql uit om de gewenste tabellen te maken.
 2. Wijzig de database creadentials en eventueel andere settings in config.php
 
 ## Getting started
-Bij een volgindicaties- of wijzigingen-request moet altijd de header x-api-key worden toegevoegd. Je mag zelf een API-key kiezen. De API-key zorgt ervoor dat je alleen volgindicaties en wijzigingen ziet die je zelf hebt gezet.
+De API is beschikbaar via de url http://www.quality-of-service.nl/haalcentraal/api/update
+Je kan de API ook installeren op een eigen webserver. Zie [Installatie](installatie).
+
+Bij een volgindicaties- of wijzigingen-request moet altijd de header x-api-key worden toegevoegd. Je mag zelf een API-key kiezen. Deze mag alleen uit cijfers en letters bestaan, geen andere tekens. De API-key zorgt ervoor dat je alleen volgindicaties en wijzigingen ziet die je zelf hebt gezet.
 
 Je kan wijzigingen zien door zelf een wijziging te sturen. Hiervoor is het berichten endpoint gemaakt. Deze hoort eigenlijk niet bij de echte API, en is alleen gemaakt om te kunnen testen en experimenteren.
 Je kan wijzigingen op twee manieren sturen:
