@@ -21,7 +21,7 @@ De API vereist een Mysql of MariaDb database.
 
 ## Getting started
 De API is beschikbaar via de url http://www.quality-of-service.nl/haalcentraal/api/update
-Je kan de API ook installeren op een eigen webserver. Zie [Installatie](installatie).
+Je kan de API ook installeren op een eigen webserver. Zie [Installatie](#installatie).
 
 Bij een volgindicaties- of wijzigingen-request moet altijd de header x-api-key worden toegevoegd. Je mag zelf een API-key kiezen. Deze mag alleen uit cijfers en letters bestaan, geen andere tekens. De API-key zorgt ervoor dat je alleen volgindicaties en wijzigingen ziet die je zelf hebt gezet.
 
