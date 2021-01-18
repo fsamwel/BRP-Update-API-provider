@@ -4,8 +4,9 @@
         ## Beschikbare functies
         De API is beschikbaar via de url http://www.quality-of-service.nl/haalcentraal/api/update
         De volgende endpoints zijn beschikbaar:
+        
             | Endpoint            | Functionaliteit                       |
-            | --- | --- |
+            |--- |--- |
             | GET /volgindicaties | Raadpleeg alle volgindicaties van jou |
             | GET /volgindicaties/{burgerservicenummer} | Raadpleeg de volgindicatie van jou op een persoon |
             | PUT /volgindicaties/{burgerservicenummer} | Zet, wijzig of beëindig de volgindicatie op een persoon |
